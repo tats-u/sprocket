@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 
@@ -14,9 +14,10 @@ import sys
 import numpy as np
 from scipy.io import wavfile
 
-from .yml import SpeakerYML
-from sprocket.speech import FeatureExtractor, Shifter
 from sprocket.model import F0statistics
+from sprocket.speech import FeatureExtractor, Shifter
+
+from .yml import SpeakerYML
 
 
 def get_f0s_from_list(conf, list_file, wav_dir):
@@ -114,8 +115,10 @@ def main(*argv):
 
     if args.f0rate == -1:
         # get f0 list to calculate F0 transformation ratio
-        org_f0s = get_f0s_from_list(org_conf, args.org_train_list, args.wav_dir)
-        tar_f0s = get_f0s_from_list(tar_conf, args.tar_train_list, args.wav_dir)
+        org_f0s = get_f0s_from_list(
+            org_conf, args.org_train_list, args.wav_dir)
+        tar_f0s = get_f0s_from_list(
+            tar_conf, args.tar_train_list, args.wav_dir)
 
         # calculate F0 statistics of original and target speaker
         f0stats = F0statistics()
